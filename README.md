@@ -2,8 +2,8 @@
 Book Craft
 
 ## List of team members
-Favour Michael
-Adaugo Onuecheghekwu
+- Favour Michael
+- Adaugo Onuecheghekwu
 
 ## Description of the Project:
 We are developing a simplified web application for book publishing, inspired by Book Bolt. The primary goal is to provide authors and self-publishers with essential tools to streamline the publishing process, focusing on features such as book cover creation, basic keyword research, and simple formatting options.
