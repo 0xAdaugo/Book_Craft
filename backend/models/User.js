@@ -16,6 +16,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+
+  //Stores reference to books associated with the user
+  books: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Book'
+  }],
   resetPassword: String,
   resetPasswordExpires: Date,
 });

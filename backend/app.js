@@ -1,8 +1,10 @@
 const express = require('express');
 const connectDB = require('./config/database'); // Import the database connection
 const authRoutes = require('./routes/auth'); // Import authentication routes
+const bookCovers = require('./routes/bookCovers'); // Import bookCovers route
 const authenticateToken = require('./middleware/authMiddleware'); // Import JWT authentication middleware
-const app = require('./app'); //Import the app
+
+const app = express();
 
 // Connect to MongoDB
 connectDB();
@@ -12,6 +14,9 @@ app.use(express.json());
 
 // Use authentication routes
 app.use('/auth', authRoutes);
+
+// Use bookCovers route
+app.use('/api/book-covers', bookCovers);
 
 // Protected route
 app.get('/protected', authenticateToken, (req, res) => {
@@ -23,8 +28,4 @@ app.get('/', (req, res) => {
   res.send('Hello, Book Craft!');
 });
 
-// Set up server to listen
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+module.exports = app;
