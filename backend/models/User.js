@@ -22,6 +22,10 @@ const UserSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Book'
   }],
+  preferences: {
+    type: Map,
+    of: String
+  },
   resetPassword: String,
   resetPasswordExpires: Date,
 });
