@@ -1,20 +1,27 @@
 {
   "name": "book-craft",
   "version": "1.0.0",
+  "description": "Book Craft Backend",
   "main": "server.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "test": "mocha --experimental-modules --es-module-specifier-resolution=node test/**/*.js"
+  },
+  "dependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "bcrypt": "^5.1.1",
+    "jsonwebtoken": "^9.0.2",
+    "nodemailer": "^6.9.13"
+  },
+  "devDependencies": {
+    "mocha": "^9.1.3",
+    "supertest": "^7.0.0"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
-  "dependencies": {
-    "bcrypt": "^5.1.1",
-    "express": "^4.19.2",
-    "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.4.0",
-    "nodemailer": "^6.9.13"
-  }
+  "license": "ISC"
 }
