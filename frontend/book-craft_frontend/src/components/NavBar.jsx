@@ -1,8 +1,8 @@
 import React, {useState} from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import BookCraft from "../assets/BookCraft.png";
-import BookCrafts from "../assets/BookCrafts.png";
+// import BookCraft from "../assets/BookCraft.png";
+// import BookCrafts from "../assets/BookCrafts.png";
 
 const NavBar = () => {
 

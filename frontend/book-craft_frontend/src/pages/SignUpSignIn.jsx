@@ -1,54 +1,10 @@
-import Form from "../components/Form"
+import React from "react";
+import Form from "../components/Form";
 
-let isRegistered = true;
-
-const signUp = () => {
-    let submit = 0;
-    console.log(`signed up ${submit}`)
-    submit += 1;
+function SignUp() {
+  return (
+    <Form />
+  );
 }
 
-const signIn = () => {
-    let submit = 0
-    console.log(`logged in ${submit}`)
-    submit += 1;
-}
-
-const SignUpSignIn = () => {
-    return <>
-    {isRegistered ? <h1 className="font-bold text-3xl text-center pt-10">Sign In</h1> : <h1 className="font-bold text-3xl text-center pt-10">Sign Up</h1>}
-    <Form 
-        labelName="Username:" 
-        inputType="text" 
-        inputId="username" 
-        inputName="username" 
-        inputPlaceholder="Enter your username"
-    />
-    <Form 
-        labelName="Email:" 
-        inputType="email"
-        inputId="user-email" 
-        inputName="email" 
-        inputPlaceholder="Enter your email"
-    />
-    <Form 
-        labelName="Password:" 
-        inputType="password" 
-        inputId="user-password" 
-        inputName="password" 
-        inputPlaceholder="Enter your password"
-    />
-    {!isRegistered && <Form 
-        labelName="Confirm Password:" 
-        inputType="password" 
-        inputId="user-password" 
-        inputName="password" 
-        inputPlaceholder="Confirm your password"
-    />}
-
-    <button onClick={isRegistered ? signIn : signUp}
-    className="bg-[#00ACD0] p-3 m-3 text-bold border-2 border-[#22464d] ">Submit</button>
-    </>
-}
-
-export default SignUpSignIn;
+export default SignUp;
