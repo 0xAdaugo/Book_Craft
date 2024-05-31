@@ -1,9 +1,12 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
+
+mongoose.set('strictQuery', false);
 
 const connectDB = async () => {
     try {
-        await mongoose.connect('mongodb://127.0.0.1:27017/bookcraftdb', {
-            useNewUrlParser:true,
+        await mongoose.connect(process.env.MONGODB_URI, {
+            useNewUrlParser: true,
             useUnifiedTopology: true
         });
         console.log('MongoDB connected...');

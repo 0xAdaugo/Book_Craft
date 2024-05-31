@@ -4,7 +4,7 @@ const authRoutes = require('./routes/auth'); // Import authentication routes
 const bookCovers = require('./routes/bookCovers'); // Import bookCovers route
 const bookRoutes = require ('./routes/bookRoutes');
 const chatGPTRoutes = require('./routes/chatGPTRoutes');
-const keywordToolRoutes = requie('./routes/keywordToolRoutes');
+//const keywordToolRoutes = require('./routes/keywordToolRoutes');
 const userPreferencesRoutes = require('./routes/userPreferencesRoutes');
 const authenticateToken = require('./middleware/authMiddleware'); // Import JWT authentication middleware
 
@@ -29,10 +29,10 @@ app.use('/books', bookRoutes);
 app.use('/api/chatgpt', chatGPTRoutes);
 
 // Use Keyword Tool routes
-app.use('/api/keywords', keywordToolRoutes);
+//app.use('/api/keywords', keywordToolRoutes);
 
 //use user peference routes
-app.use('/api/user', userPreferencsRoutes);
+app.use('/api/user', userPreferencesRoutes);
 
 // Protected route
 app.get('/protected', authenticateToken, (req, res) => {
