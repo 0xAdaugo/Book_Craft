@@ -8,7 +8,9 @@ import ProfilePage from "./pages/ProfilePage";
 import WordSearchMaker from "./pages/WordSearchMaker";
 import NavBar from "./components/NavBar";
 import PuzzlesPage from "./pages/PuzzlesPage";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
+import Settings from "./pages/Settings";
+import axios from "axios";
 
 function App() {
   return (
@@ -26,10 +28,11 @@ function App() {
         <Route path="/crossword" element={<CrossWordMaker />} />
         <Route path="/wordsearch" element={<WordSearchMaker />} />
         <Route path="/puzzles" element={<PuzzlesPage />} />
+        <Route path="/settings" element={<Settings />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
 
-      {/* <Footer /> */}
+      <Footer />
     </BrowserRouter>
     </div>
   );

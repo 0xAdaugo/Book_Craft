@@ -1,19 +1,36 @@
 // import { Link } from "react-router-dom";
 import {} from 'react-icons/ai';
 import Hero from "../components/Hero";
+import SlideOne from '../components/SlideOne';
+// import SlideTwo from '../components/SlideTwo';
+// import SlideThree from '../components/SlideThree';
+// import Textbox from '../components/Textbox';
+import Analytics from '../components/Analytics';
+import NewsLetter from '../components/NewsLetter';
+import Cards from '../components/Cards';
+// import file from '../assets/library_1.jpg'
 
 const HomePage = () => {
-
-    // const puzzleItems = [
-    //     { id: 1, text: "Puzzle 1", path: "/puzzle1" },
-    //     { id: 2, text: "Puzzle 2", path: "/puzzle2" },
-    //     { id: 3, text: "Puzzle 3", path: "/puzzle3" },
-    //     { id: 4, text: "Puzzle 4", path: "/puzzle4" },
-    // ]
     return (
         <>
         <Hero />
-        <p className='p-5'></p>
+        <SlideOne />
+        {/* <Textbox /> */}
+        {/* <SlideTwo /> */}
+        {/* <SlideThree /> */}
+        <Analytics />
+        <NewsLetter />
+        <Cards
+            // image={file}
+            // heading="Sudoku"
+            // price="$200"
+            // paragraph1="500 GB of storage"
+            // paragraph2="1 Granted user"
+            // paragraph3="Send up to 2gb"
+            // buttonText="Start Trial"
+        />
+        {/* <Textbox /> */}
+        
     </>
     )
 }
