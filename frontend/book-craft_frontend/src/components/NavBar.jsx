@@ -19,8 +19,6 @@ const NavBar = () => {
         { id: 4, text: "Puzzles", path: "/puzzles" },
     ];
 
-    console.log(navItems.id);
-
     return (
     <div className="bg-black flex justify-between items-center h-24 mx-auto px-4 text-white">
         <h1 className="w-full text-3xl font-bold text-[#00ACD0]">
