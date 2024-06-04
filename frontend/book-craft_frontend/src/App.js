@@ -10,7 +10,6 @@ import NavBar from "./components/NavBar";
 import PuzzlesPage from "./pages/PuzzlesPage";
 import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
-import axios from "axios";
 
 function App() {
   return (

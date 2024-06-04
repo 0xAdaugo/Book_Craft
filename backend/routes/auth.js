@@ -1,6 +1,6 @@
 // routes/auth.js
 const express = require('express');
-const router = express.Router();
+const router = require("express").Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const crypto = require('crypto');
@@ -8,6 +8,12 @@ const User = require('../models/User'); // Import the User model
 const { body, validationResult } = require('express-validator');
 const authController = require('../controllers/authController'); // Import the authController
 const { sendResetPasswordEmail } = require('../services/emailService'); // Import the email service
+
+const { Signup } = require("../controllers/authController");
+
+
+router.post("/signup", Signup);
+
 
 // Route for user registration
 router.post('/register', [

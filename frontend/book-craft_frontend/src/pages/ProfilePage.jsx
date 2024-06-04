@@ -1,5 +1,6 @@
 import profilePic from "../assets/profilePic.jpg";
 import { FaPlus } from "react-icons/fa";
+import { useState, useEffect } from "react";
 
 const ProfilePage = () => {
 
