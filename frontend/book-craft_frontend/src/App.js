@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import SignUpSignIn from "./pages/SignUpSignIn";
+
 import AboutPage from "./pages/AboutPage";
 import CrossWordMaker from "./pages/CrossWordMaker";
 import HomePage from "./pages/HomePage";
@@ -10,6 +10,11 @@ import NavBar from "./components/NavBar";
 import PuzzlesPage from "./pages/PuzzlesPage";
 import Footer from "./components/Footer";
 import Settings from "./pages/Settings";
+import Register from "./pages/Register";
+import Login from "./pages/Login";
+import BookCovers from "./pages/BookCovers";
+import ChatGPT from "./pages/ChatGPT";
+import ResetPassword from "./pages/ResetPassword";
 
 function App() {
   return (
@@ -21,9 +26,13 @@ function App() {
 
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/signup" element={<SignUpSignIn />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/bookcovers" element={<BookCovers />} />
+        <Route path="/chatgpt" element={<ChatGPT />} />
+        <Route path="/resetpassword" element={<ResetPassword />} />
         <Route path="/crossword" element={<CrossWordMaker />} />
         <Route path="/wordsearch" element={<WordSearchMaker />} />
         <Route path="/puzzles" element={<PuzzlesPage />} />
