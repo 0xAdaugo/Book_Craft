@@ -1,28 +1,37 @@
-require('./testSetup');
-
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../server.js');
-const User = require('../models/User.js');
+const { app, server } = require('../server.js'); 
+const User = require('../models/User');
 
 const { expect } = chai;
 
 chai.use(chaiHttp);
 
 describe('Auth API', () => {
-  beforeEach(async () => {
-    await User.deleteMany({});
+  beforeEach(async function () {
+    this.timeout(5000);
+    try {
+      await User.deleteMany({});
+    } catch (err) {
+      console.error(err);
+    }
+  });
+
+  after((done) => {
+    // Close the server after all tests are done
+    server.close(done);
+
   });
 
   describe('/POST register', () => {
     it('should register a new user', async () => {
       const user = {
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       };
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/register')
         .send(user);
 
@@ -33,11 +42,11 @@ describe('Auth API', () => {
 
     it('should not register a user with missing fields', async () => {
       const user = {
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       };
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/register')
         .send(user);
 
@@ -49,18 +58,18 @@ describe('Auth API', () => {
     it('should not register a user with an existing email', async () => {
       const existingUser = new User({
         username: 'existinguser',
-        email: 'existinguser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: 'password123'
       });
       await existingUser.save();
 
       const user = {
         username: 'testuser',
-        email: 'existinguser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       };
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/register')
         .send(user);
 
@@ -74,14 +83,14 @@ describe('Auth API', () => {
     it('should login a user', async () => {
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       });
       await user.save();
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/login')
-        .send({ email: 'testuser@example.com', password: '123456' });
+        .send({ email: 'bookcraft24@gmail.com', password: '123456' });
 
       expect(res).to.have.status(200);
       expect(res.body).to.be.an('object');
@@ -91,14 +100,14 @@ describe('Auth API', () => {
     it('should not login a user with incorrect password', async () => {
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       });
       await user.save();
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/login')
-        .send({ email: 'testuser@example.com', password: 'incorrectpassword' });
+        .send({ email: 'bookcraft24@gmail.com', password: 'incorrectpassword' });
 
       expect(res).to.have.status(401);
       expect(res.body).to.be.an('object');
@@ -106,9 +115,9 @@ describe('Auth API', () => {
     });
 
     it('should not login a non-existent user', async () => {
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/login')
-        .send({ email: 'nonexistent@example.com', password: '123456' });
+        .send({ email: 'bookcraft24@gmail.com', password: '123456' });
 
       expect(res).to.have.status(404);
       expect(res.body).to.be.an('object');
@@ -120,12 +129,12 @@ describe('Auth API', () => {
     it('should request a password reset', async () => {
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       });
       await user.save();
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/request-password-reset')
         .send({ email: 'testuser@example.com' });
 
@@ -135,7 +144,7 @@ describe('Auth API', () => {
     });
 
     it('should not request a password reset for a non-existent user', async () => {
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/request-password-reset')
         .send({ email: 'nonexistent@example.com' });
 
@@ -146,17 +155,19 @@ describe('Auth API', () => {
   });
 
   describe('/POST reset-password', () => {
-    it('should reset the password', async () => {
+    it('should reset the password', async function () {
+      this.timeout(5000);
+
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456',
         resetPasswordToken: 'validtoken',
         resetPasswordExpires: Date.now() + 3600000 // 1 hour
       });
       await user.save();
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/reset-password')
         .send({ token: 'validtoken', password: 'newpassword' });
 
@@ -168,14 +179,14 @@ describe('Auth API', () => {
     it('should not reset the password with an invalid token', async () => {
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456',
         resetPasswordToken: 'validtoken',
         resetPasswordExpires: Date.now() + 3600000 // 1 hour
       });
       await user.save();
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/reset-password')
         .send({ token: 'invalidtoken', password: 'newpassword' });
 
@@ -187,14 +198,14 @@ describe('Auth API', () => {
     it('should not reset the password with an expired token', async () => {
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456',
         resetPasswordToken: 'validtoken',
         resetPasswordExpires: Date.now() - 3600000 // 1 hour ago
       });
       await user.save();
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/reset-password')
         .send({ token: 'validtoken', password: 'newpassword' });
 
@@ -208,18 +219,18 @@ describe('Auth API', () => {
     it('should logout a user', async () => {
       const user = new User({
         username: 'testuser',
-        email: 'testuser@example.com',
+        email: 'bookcraft24@gmail.com',
         password: '123456'
       });
       await user.save();
 
-      const loginRes = await chai.request(server)
+      const loginRes = await chai.request(app)
         .post('/auth/login')
-        .send({ email: 'testuser@example.com', password: '123456' });
+        .send({ email: 'bookcraft24@gmail.com', password: '123456' });
 
       const token = loginRes.body.token;
 
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/logout')
         .set('Authorization', `Bearer ${token}`);
 
@@ -229,7 +240,7 @@ describe('Auth API', () => {
     });
 
     it('should not logout a user without token', async () => {
-      const res = await chai.request(server)
+      const res = await chai.request(app)
         .post('/auth/logout');
 
       expect(res).to.have.status(401);

@@ -30,6 +30,9 @@ const UserSchema = new mongoose.Schema({
   resetPasswordExpires: Date,
 });
 
+// Create an index on the email field
+UserSchema.index({ email: 1}); // 1 for ascending order
+
 UserSchema.methods.comparePassword = async function (password) {
   return bycrypt.compare(password, this.password);
 };

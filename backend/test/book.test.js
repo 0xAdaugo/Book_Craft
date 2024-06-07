@@ -1,6 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../server');
+const { app, server } = require('../server'); // Ensure both app and server are imported
 const User = require('../models/User');
 const Book = require('../models/Book');
 const mongoose = require('mongoose');
@@ -20,16 +20,16 @@ describe('Book API', () => {
         // Create a new user and obtain a token
         const user = new User({
           username: 'testuser',
-          email: 'testuser@example.com',
+          email: 'bookcraft24@gmail.com',
           password: '123456'
         });
 
         user.save((err, savedUser) => {
           userId = savedUser._id;
 
-          chai.request(server)
+          chai.request(app) // Use app instead of server
             .post('/auth/login')
-            .send({ email: 'testuser@example.com', password: '123456' })
+            .send({ email: 'bookcraft24@gmail.com', password: '123456' })
             .end((err, res) => {
               token = res.body.token;
               done();
@@ -43,14 +43,15 @@ describe('Book API', () => {
   after((done) => {
     User.deleteMany({}, (err) => {
       Book.deleteMany({}, (err) => {
-        mongoose.disconnect();
-        done();
+        mongoose.disconnect(() => {
+          server.close(done); // Close the server after tests
+        });
       });
     });
   });
 
   describe('/POST book', () => {
-    it('it should create a new book', (done) => {
+    it('should create a new book', async () => {
       const book = {
         title: 'Test Book',
         author: 'Test Author',
@@ -59,7 +60,7 @@ describe('Book API', () => {
         publicationYear: 2022,
         coverUrl: 'http://example.com/cover.jpg'
       };
-      chai.request(server)
+      chai.request(app) // Use app instead of server
         .post('/books')
         .set('Authorization', `Bearer ${token}`)
         .send(book)
@@ -79,7 +80,7 @@ describe('Book API', () => {
         publicationYear: 2022,
         coverUrl: 'http://example.com/cover.jpg'
       };
-      chai.request(server)
+      chai.request(app) // Use app instead of server
         .post('/books')
         .set('Authorization', `Bearer ${token}`)
         .send(book)
@@ -94,7 +95,7 @@ describe('Book API', () => {
 
   describe('/GET books', () => {
     it('it should GET all the books', (done) => {
-      chai.request(server)
+      chai.request(app) // Use app instead of server
         .get('/books')
         .set('Authorization', `Bearer ${token}`)
         .end((err, res) => {
@@ -114,7 +115,7 @@ describe('Book API', () => {
         coverUrl: 'http://example.com/cover.jpg'
       });
       book.save((err, book) => {
-        chai.request(server)
+        chai.request(app) // Use app instead of server
           .get(`/books/${book.id}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
@@ -138,7 +139,7 @@ describe('Book API', () => {
         coverUrl: 'http://example.com/cover.jpg'
       });
       book.save((err, book) => {
-        chai.request(server)
+        chai.request(app) // Use app instead of server
           .put(`/books/${book.id}`)
           .set('Authorization', `Bearer ${token}`)
           .send({ title: 'Updated Book' })
@@ -163,7 +164,7 @@ describe('Book API', () => {
         coverUrl: 'http://example.com/cover.jpg'
       });
       book.save((err, book) => {
-        chai.request(server)
+        chai.request(app) // Use app instead of server
           .delete(`/books/${book.id}`)
           .set('Authorization', `Bearer ${token}`)
           .end((err, res) => {
@@ -176,3 +177,4 @@ describe('Book API', () => {
     });
   });
 });
+
