@@ -1,4 +1,4 @@
-const Book = require('../models/Book');
+const Book = require('../models/book');
 
 const createBook = async (req, res) => {
   const { title, author, genre, description, publicationYear, isbn, coverImageUrl } = req.body;
