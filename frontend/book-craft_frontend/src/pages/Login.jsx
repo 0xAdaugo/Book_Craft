@@ -50,8 +50,8 @@ const Login = () => {
   return (
     <div className='h-screen w-full p-auto flex justify-center items-center flex-col'>
       <h1 className='text-3xl font-bold text-center text-[#004aad] mb-3'>Log In</h1>
-      <div className='w-3/4 h-3/4 border-2 border-[#00ACD0] shadow-2xl shadow-[#00ACD0] bg-white flex justify-center items-center flex-col'>
-      <form className="space-y-4 md:space-y-6 w-1/2 h-1/2" onSubmit={handleSubmit} action="#">
+      <div className='w-3/4 md:w-1/2 h-3/4 border-2 border-[#00ACD0] shadow-2xl shadow-[#00ACD0] bg-white flex justify-center items-center flex-col'>
+      <form className="space-y-4 md:space-y-6 md:w-1/2 h-1/2" onSubmit={handleSubmit} action="#">
         <div>
               <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900">Your email</label>
               <input onChange={handleChange} value={email} type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="name@company.com" required={true} />

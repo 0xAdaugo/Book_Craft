@@ -1,12 +1,12 @@
 import profilePic from "../assets/profilePic.jpg";
 import { FaPlus } from "react-icons/fa";
-import { useState, useEffect } from "react";
+//import { useState, useEffect } from "react";
 
 const ProfilePage = () => {
 
-    const [user, setUser] = useState({username: "", name: "", email: ""});
+    //const [user, setUser] = useState({username: "", name: "", email: ""});
 
-    useEffect(() => {}, []);
+    //useEffect(() => {}, []);
     const userDetails = [
         {
         id: 1,
@@ -20,10 +20,6 @@ const ProfilePage = () => {
         email: "janedoe123@gmail.com"
     }
 ];
-
-    const updateUser = (e) => {
-        setUser({username: e.target.value, name: e.target.value, email: e.target.value});
-    }
 
     return (
     <div className="m-10 shadow-sm h-screen block overflow-auto">
@@ -39,7 +35,7 @@ const ProfilePage = () => {
 
         <div className="h-[50%]">
             <h1 className="text-3xl font-display text-center underline p-10">Your Details</h1>
-            <p className="p-3 font-bold pl-28" onClick={updateUser}>Username: {user}</p>
+            <p className="p-3 font-bold pl-28">Username: {userDetails[0].username}</p>
             <p className="p-3 font-bold pl-28">Name: {userDetails[0].name}</p>
             <p className="p-3 font-bold pl-28">Email: {userDetails[0].email}</p>
         </div>

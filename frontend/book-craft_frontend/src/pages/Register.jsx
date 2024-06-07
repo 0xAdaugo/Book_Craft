@@ -52,8 +52,8 @@ const Register = () => {
   return (
     <div className='h-screen w-full p-auto flex justify-center items-center flex-col'>
       <h1 className='text-3xl font-bold text-center text-[#004aad] mb-3'>Register</h1>
-      <div className='w-1/2 h-3/4 border-2 border-[#00ACD0] shadow-2xl shadow-[#00ACD0] bg-white flex justify-center items-center flex-col'>
-        <form className="space-y-4 md:space-y-6 w-1/2 " action="#" onSubmit={handleSubmit}>
+      <div className='w-3/4 md:w-1/2 h-3/4 border-2 border-[#00ACD0] shadow-2xl shadow-[#00ACD0] bg-white flex justify-center items-center flex-col'>
+        <form className="space-y-4 md:space-y-6 md:w-1/2 " action="#" onSubmit={handleSubmit}>
           <div>
               <label htmlFor="username" className="block mb-2 text-sm font-medium text-gray-900">Username</label>
               <input onChange={handleChange} value={username} type="text" name="username" id="username" placeholder="yourusername" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required={true} />
@@ -79,7 +79,7 @@ const Register = () => {
           </div>
           <button type="submit" className="w-full text-black bg-[#004aad] hover:bg-[#477ec6] focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Register</button>
           <p className="text-sm font-light text-gray-500">
-              Don't have an account yet? <Link className="font-medium text-primary-600 hover:underline">Sign up</Link>
+              Already have an account? <Link to={"/login"} className="font-medium text-primary-600 hover:underline">Login</Link>
           </p>
         </form>
 

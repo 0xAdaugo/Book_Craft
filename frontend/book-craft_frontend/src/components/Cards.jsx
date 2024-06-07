@@ -17,7 +17,7 @@ const Cards = () => {
             <button className='w-40 bg-[#00ACD0] rounded-md font-medium my-3 mx-auto text-black p-2 border-2 border-black'>Create</button>
         </div>
         <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300'>
-            <img className='w-20 mx-auto mt-[-3rem] bg-white' src={file} alt="card image" />
+            <img className='w-20 mx-auto mt-[-3rem] bg-white' src={file} alt="card" />
             <h2 className='text-2xl font-bold text-center py-8'>Crossword</h2>
             <p className='text-center text-4xl font-bold'>1 week free</p>
             <div className='text-center font-medium'>
@@ -28,7 +28,7 @@ const Cards = () => {
             <button className='w-40 bg-[#00ACD0] rounded-md font-medium my-3 mx-auto text-black p-2 border-2 border-black'>Create</button>
         </div>
         <div className='w-full shadow-xl flex flex-col p-4 my-4 rounded-lg hover:scale-105 duration-300'>
-            <img className='w-20 mx-auto mt-[-3rem] bg-white' src={file} alt="card image" />
+            <img className='w-20 mx-auto mt-[-3rem] bg-white' src={file} alt="card" />
             <h2 className='text-2xl font-bold text-center py-8'>Sudoku</h2>
             <p className='text-center text-4xl font-bold'>1 week free</p>
             <div className='text-center font-medium'>

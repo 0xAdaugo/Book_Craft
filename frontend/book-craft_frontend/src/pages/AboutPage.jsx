@@ -5,6 +5,8 @@ const AboutPage = () => {
 
     const handleToggle =(index) => {
         setOpenIndex(prevIndex => (prevIndex === index ? null : index))
+    openIndex(index);
+    setOpenIndex();
     }
     return (
     <div className="m-4 shadow-sm overflow-auto">
@@ -15,7 +17,7 @@ const AboutPage = () => {
         
         <div>
             <h1 className="font-display text-2xl text-center mt-10 p-10">FAQs</h1>
-            <details className="md:text-center hover:scale-110">
+            <details onClick={handleToggle} className="md:text-center hover:scale-110">
                 <summary className="font-bold p-2 ">What we do?</summary>
                 <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English.</p>
             </details>
